@@ -1,0 +1,32 @@
+### Problem Description (20 points)
+
+**Clarity of the problem statement (5 points)**
+* **States the core problem:** The problem is to predict the binary probability of an individual being a smoker based on clinical health measurements.
+* **Explains the methodology:** The model analyzes 22 specific physical and biomarker features to determine their predictive strength.
+* **Details the modeling approach:** The model assigns weights to each feature based on its observed statistical relationship with the binary smoking target.
+* **Connects to the broader impact:** Identifying how metrics like liver enzymes, blood lipids, and physical size affect smoking probability helps officials pinpoint health trends.
+* **Concludes with the practical application:** This allows for data-driven targeting of education and treatment based on explicit physiological markers.
+
+**Dataset description (5 points)**
+* **States the sample size:** The training dataset contains exactly 15,000 patient records.
+* **States the number of features:** The dataset consists of 22 predictor features, one binary response variable, and one unique identifier column (`id`).
+* **Defines the response variable:** The response variable is `smoking`, a binary indicator denoting whether the individual currently smokes.
+* **Explains the physical features:** Physical characteristics are explicitly measured through `age`, `height(cm)`, `weight(kg)`, and `waist(cm)`.
+* **Explains the sensory features:** Sensory capabilities are quantified using numeric scales for `eyesight(left)`, `eyesight(right)`, `hearing(left)`, and `hearing(right)`.
+* **Explains the cardiovascular features:** Cardiovascular health is measured via `systolic` and `relaxation` (diastolic) blood pressure readings.
+* **Explains the blood and metabolic features:** Metabolic and lipid profiles are captured through `fasting blood sugar`, `Cholesterol`, `triglyceride`, `HDL`, `LDL`, and `hemoglobin` levels.
+* **Explains organ function features:** Renal and hepatic functions are explicitly measured using `Urine protein`, `serum creatinine`, `AST`, `ALT`, and `Gtp` levels.
+* **Explains the dental feature:** Oral health is represented by the `dental caries` indicator.
+
+**Objective (5 points)**
+* **States the main objective:** The primary objective is to predict the probability of a positive smoking status using the provided clinical features.
+* **Describes the machine learning process:** Machine learning models will learn the relationships between the 22 features and the labeled smoking data to apply to unseen test data.
+* **Defines the evaluation metric:** Submissions are evaluated using the Area Under the Receiver Operating Characteristic Curve (ROC AUC) metric.
+* **Explains how success is calculated:** This metric measures model performance by comparing the predicted probability of smoking against the observed binary target.
+
+**Relevance to field (5 points)**
+* **Establishes the medical context:** Smoking has a well-established, negative impact on an individual's long-term health outcomes.
+* **Details the specific risks tied to data:** Smoking directly alters explicit health metrics like blood pressure, cholesterol, and liver enzymes.
+* **Highlights the public health crisis:** The smoking epidemic places a heavy burden on health systems and impacts millions of individuals globally.
+* **Explains the value of predictive models:** Understanding the exact statistical relationship between clinical markers and smoking helps make public health campaigns highly targeted.
+* **States the final real-world goal:** This data-driven analysis of physical characteristics helps establish preventative policies and targeted interventions to reduce smoking.
