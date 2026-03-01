@@ -44,6 +44,14 @@ test_files <- c(
 
 results <- lapply(test_files, function(f) {
   cat("\n── testing:", f, "\n")
+test_files <- c(test_files,
+  "tests/preprocessing/data_cleaning/test_clean_colnames.R",
+  "tests/models/tuned/test_remove_id.R",
+  "tests/models/tuned/test_xgboost.R"
+)
+
+results <- lapply(test_files, function(f) {
+  cat("\n── testing:", f, "\n")
   tryCatch(
     test_file(f, reporter = "minimal"),
     error = function(e) message("FAIL: ", f, "\n  ", conditionMessage(e))
@@ -51,7 +59,3 @@ results <- lapply(test_files, function(f) {
 })
 
 cat("\n══ all tests complete ══\n")
-
-test_files <- c(test_files, "tests/preprocessing/data_cleaning/test_clean_colnames.R")
-  , "tests/models/tuned/test_remove_id.R"
-  , "tests/models/tuned/test_xgboost.R"
