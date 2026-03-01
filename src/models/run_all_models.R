@@ -19,5 +19,4 @@ model_results <- list(
   pcr         = run_pcr(train_clean,                RESPONSE, OUT_DIR),
   bootstrap   = run_bootstrap(train_clean,          RESPONSE)
 )
-
 message("all models fitted: ", paste(names(model_results), collapse = ", "))
