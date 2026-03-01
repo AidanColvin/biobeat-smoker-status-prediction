@@ -8,6 +8,7 @@ test_files <- c(
   "tests/preprocessing/data_cleaning/test_to_numeric.R",
   "tests/preprocessing/data_cleaning/test_to_factor.R",
   "tests/preprocessing/data_cleaning/test_to_date.R",
+  "tests/preprocessing/data_cleaning/test_clean_colnames.R",
   "tests/preprocessing/data_transformation/test_standardize.R",
   "tests/preprocessing/data_transformation/test_min_max.R",
   "tests/preprocessing/data_transformation/test_cap_outliers.R",
@@ -39,13 +40,7 @@ test_files <- c(
   "tests/evaluate/test_metrics.R",
   "tests/evaluate/test_confusion_matrix.R",
   "tests/evaluate/test_combinations.R",
-  "tests/evaluate/test_compare_models.R"
-)
-
-results <- lapply(test_files, function(f) {
-  cat("\n── testing:", f, "\n")
-test_files <- c(test_files,
-  "tests/preprocessing/data_cleaning/test_clean_colnames.R",
+  "tests/evaluate/test_compare_models.R",
   "tests/models/tuned/test_remove_id.R",
   "tests/models/tuned/test_xgboost.R"
 )
