@@ -1,3 +1,5 @@
 test_results.log
 *.log
 .DS_Store
+logs/
+scripts/
