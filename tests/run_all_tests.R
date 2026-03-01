@@ -27,7 +27,15 @@ test_files <- c(
   "tests/train/test_train_lda.R",
   "tests/train/test_train_qda.R",
   "tests/train/test_train_rf.R",
-  "tests/train/test_train_svm.R"
+  "tests/train/test_train_svm.R",
+  "tests/feature_analysis/test_correlation.R",
+  "tests/feature_analysis/test_anova.R",
+  "tests/feature_analysis/test_weight_predictors.R",
+  "tests/models/test_logistic.R",
+  "tests/models/test_knn.R",
+  "tests/models/test_ridge_lasso.R",
+  "tests/models/test_naive_bayes.R",
+  "tests/models/test_pcr.R"
 )
 
 results <- lapply(test_files, function(f) {
