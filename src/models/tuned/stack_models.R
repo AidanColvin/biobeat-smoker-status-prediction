@@ -2,14 +2,13 @@ library(xgboost)
 library(randomForest)
 library(glmnet)
 source("src/models/tuned/xgboost_model.R")
-source("src/models/tuned/remove_id.R")
 
 #' given train data and response name
 #' return stacked ensemble using out-of-fold predictions as meta features
 #' level 1: xgboost + random forest
 #' level 2: logistic regression on oof predictions
 run_stacking <- function(df, response, k = 10, ntree = 300, xgb_rounds = 150) {
-  df[[response]] <- as.numeric(df[[response]])
+  df[[response]] <- as.factor(df[[response]])
   set.seed(42)
   n       <- nrow(df)
   folds   <- sample(rep(1:k, length.out = n))
@@ -22,7 +21,7 @@ run_stacking <- function(df, response, k = 10, ntree = 300, xgb_rounds = 150) {
     val   <- df[folds == i, ]
     x_tr  <- as.matrix(tr[,  names(tr)  != response])
     x_val <- as.matrix(val[, names(val) != response])
-    y_tr  <- tr[[response]]
+    y_tr  <- as.numeric(as.character(tr[[response]]))
     xgb_fit <- xgb.train(
       params  = list(objective = "binary:logistic", eval_metric = "auc",
                      eta = 0.05, max_depth = 4, subsample = 0.8,
@@ -36,13 +35,13 @@ run_stacking <- function(df, response, k = 10, ntree = 300, xgb_rounds = 150) {
     message("  fold ", i, "/", k, " done")
   }
 
-  meta_train <- data.frame(xgb = oof_xgb, rf = oof_rf, y = df[[response]])
+  meta_train <- data.frame(xgb = oof_xgb, rf = oof_rf, y = as.numeric(as.character(df[[response]])))
   message("fitting meta learner (logistic)...")
   meta_fit <- glm(y ~ xgb + rf, data = meta_train, family = binomial)
 
   message("fitting final level-1 models on full train...")
   x_full <- as.matrix(df[, names(df) != response])
-  y_full <- df[[response]]
+  y_full <- as.numeric(as.character(df[[response]]))
   xgb_final <- xgb.train(
     params  = list(objective = "binary:logistic", eval_metric = "auc",
                    eta = 0.05, max_depth = 4, subsample = 0.8,
