@@ -1,0 +1,15 @@
+library(testthat)
+source("src/feature_analysis/correlation.R")
+source("src/feature_analysis/anova_test.R")
+source("src/feature_analysis/feature_importance.R")
+source("src/feature_analysis/weight_predictors.R")
+
+test_that("weight_predictors returns combined weight column", {
+  df  <- data.frame(a = rnorm(50), b = rnorm(50), smoking = rbinom(50, 1, 0.5))
+  cor_s  <- correlate_features(df, "smoking", out_dir = tempdir())
+  anov   <- run_anova(df, "smoking", out_dir = tempdir())
+  imp    <- run_feature_importance(df, "smoking", ntree = 50, out_dir = tempdir())
+  out    <- weight_predictors(cor_s, anov, imp, out_dir = tempdir())
+  expect_true("combined" %in% names(out))
+  expect_true(nrow(out) > 0)
+})
