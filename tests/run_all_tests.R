@@ -35,7 +35,11 @@ test_files <- c(
   "tests/models/test_knn.R",
   "tests/models/test_ridge_lasso.R",
   "tests/models/test_naive_bayes.R",
-  "tests/models/test_pcr.R"
+  "tests/models/test_pcr.R",
+  "tests/evaluate/test_metrics.R",
+  "tests/evaluate/test_confusion_matrix.R",
+  "tests/evaluate/test_combinations.R",
+  "tests/evaluate/test_compare_models.R"
 )
 
 results <- lapply(test_files, function(f) {
