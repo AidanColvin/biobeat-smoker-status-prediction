@@ -53,3 +53,5 @@ results <- lapply(test_files, function(f) {
 cat("\n══ all tests complete ══\n")
 
 test_files <- c(test_files, "tests/preprocessing/data_cleaning/test_clean_colnames.R")
+  , "tests/models/tuned/test_remove_id.R"
+  , "tests/models/tuned/test_xgboost.R"
